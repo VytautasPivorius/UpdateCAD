@@ -44,7 +44,7 @@ namespace UpdateCAD
         private void button2_Click(object sender, EventArgs e)
         {
 
-            if (radioButton1.Checked == true) // From EE directory
+            if (radioButton1.Checked == true) // If selected EE directory
             {
                 FromSubassemblies = @"G:\Common Data\CAD\_General\Toolpalette";
                 ToSubassemblies = @"C:\CAD\_General\Toolpalette";
@@ -59,7 +59,7 @@ namespace UpdateCAD
                 ToAll = @"C:\CAD\EE";
             }
             
-            if (radioButton2.Checked == true) // From LT directory
+            if (radioButton2.Checked == true) // If selected LT directory
             {
                 FromSubassemblies = @"G:\Common Data\CAD\LT\Toolpalette";
                 ToSubassemblies = @"C:\CAD\LT\Toolpalette";
@@ -74,7 +74,7 @@ namespace UpdateCAD
                 ToAll = @"C:\CAD\LT";
             }
 
-            if (radioButton3.Checked == true) // From LV directory
+            if (radioButton3.Checked == true) // If selected LV directory
             {
                 FromSubassemblies = @"G:\Common Data\CAD\LV\Toolpalette";
                 ToSubassemblies = @"C:\CAD\LV\Toolpalette";
@@ -89,7 +89,7 @@ namespace UpdateCAD
                 ToAll = @"C:\CAD\LV";
             }
 
-            if (radioButton4.Checked == true) // From SE directory
+            if (radioButton4.Checked == true) // If selected SE directory
             {
                 FromSubassemblies = @"G:\Common Data\CAD\LT\Toolpalette";
                 ToSubassemblies = @"C:\CAD\_General\Toolpalette";
@@ -104,6 +104,7 @@ namespace UpdateCAD
                 ToAll = @"C:\CAD\SE";
             }
 
+            // Drop down menu for version selection
             if (comboBox1.SelectedItem == "2020")
             {
                 ToImportedTools = @"C:\ProgramData\Autodesk\C3D 2020\enu\Imported Tools";
@@ -125,24 +126,24 @@ namespace UpdateCAD
                 ToImportedTools = @"C:\ProgramData\Autodesk\C3D 2024\enu\Imported Tools";
             }
 
-            if (checkBox1.Checked) // Copy subassemblies
+            if (checkBox1.Checked) // Copy subassemblies and imported tools files
             {
                 CopyFiles(FromSubassemblies, ToSubassemblies);
                 CopyFiles(FromImportedTools, ToImportedTools);
             }
-            if (checkBox2.Checked) // Copy Templates
+            if (checkBox2.Checked) // Copy Templates files
             {
                 CopyFiles(FromTemplates, ToTemplates);
             }
-            if (checkBox3.Checked) // Copy Dynamo script
+            if (checkBox3.Checked) // Copy Dynamo script files
             {
                 CopyFiles(FromDynamoScripts, ToDynamoScripts);
             }
-            if (checkBox4.Checked) // Copy Dynamo packages
+            if (checkBox4.Checked) // Copy Dynamo packages files
             {
                 CopyFiles(FromDynamoPackages, ToDynamoPackages);
             }
-            if (checkBox5.Checked) // Copy all information
+            if (checkBox5.Checked) // Copy all information files
             {
                 CopyFiles(FromAll, ToAll);
                 CopyFiles(FromImportedTools, ToImportedTools);
@@ -151,18 +152,18 @@ namespace UpdateCAD
 
             }
 
-        // Copy files and directories
+        // Copy functions
         void CopyFiles(string source, string destination)
         {
             DirectoryInfo sourceDir = new DirectoryInfo(source);
             DirectoryInfo destinationDir = new DirectoryInfo(destination);
-
-            if (!sourceDir.Exists)
+            
+            if (!sourceDir.Exists) // If source directory doesnt exist
             {
                 MessageBox.Show($"Source directory '{source}' does not exist.");
                 return;
             }
-            if (!destinationDir.Exists)
+            if (!destinationDir.Exists) // If destination directory doesnt exist
             {
                 destinationDir.Create();
             }
@@ -170,8 +171,7 @@ namespace UpdateCAD
             int totalItems = sourceDir.GetFiles().Length + sourceDir.GetDirectories().Length;
             int copiedItems = 0;
 
-            //If source directory is empty
-            if(totalItems == 0)
+            if(totalItems == 0) //If source directory is empty show message
             {
                 MessageBox.Show($"Source directory '{source}' is empty.");
                 return;
@@ -196,7 +196,7 @@ namespace UpdateCAD
                 UpdateProgressBar(copiedItems, totalItems);
             }
         }
-        // Need to correct progress bar
+        // Need to correct progress bar!!!!
         private void UpdateProgressBar(int current, int total)
         {
             int progressPercentage = (current * 100) / total;
@@ -205,7 +205,7 @@ namespace UpdateCAD
             return;
         }
 
-        // I dont know why it is needed
+        // Default from Form1
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
                 
