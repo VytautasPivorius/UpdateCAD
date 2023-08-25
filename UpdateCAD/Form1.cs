@@ -105,26 +105,9 @@ namespace UpdateCAD
             }
 
             // Drop down menu for version selection
-            if (comboBox1.SelectedItem == "2020")
-            {
-                ToImportedTools = @"C:\ProgramData\Autodesk\C3D 2020\enu\Imported Tools";
-            }
-            if (comboBox1.SelectedItem == "2021")
-            {
-                ToImportedTools = @"C:\ProgramData\Autodesk\C3D 2021\enu\Imported Tools";
-            }
-            if (comboBox1.SelectedItem == "2022")
-            {
-                ToImportedTools = @"C:\ProgramData\Autodesk\C3D 2022\enu\Imported Tools";
-            }
-            if (comboBox1.SelectedItem == "2023")
-            {
-                ToImportedTools = @"C:\ProgramData\Autodesk\C3D 2023\enu\Imported Tools";
-            }
-            if (comboBox1.SelectedItem == "2024")
-            {
-                ToImportedTools = @"C:\ProgramData\Autodesk\C3D 2024\enu\Imported Tools";
-            }
+
+            ToImportedTools = $@"C:\ProgramData\Autodesk\C3D {comboBox1.SelectedItem}\enu\Imported Tools";
+            
 
             if (checkBox1.Checked) // Copy subassemblies and imported tools files
             {
